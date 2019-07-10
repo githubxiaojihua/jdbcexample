@@ -1,3 +1,5 @@
+package com.xiaojihua.jdbc;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -5,7 +7,7 @@ import java.sql.Statement;
 
 /**
  * 知识点：
- * jdbc链接mysql数据库
+ * jdbc规范链接数据库的步骤
  */
 public class C01JDBCexample {
     public static void main(String[] args) throws Exception{
@@ -25,7 +27,7 @@ public class C01JDBCexample {
             System.out.println(cid + "\t" + cname);
         }
         //关闭资源
-        rs.close();
+        rs.close();//只有查询的时候才有rs。
         statement.close();
         conn.close();
 
