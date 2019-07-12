@@ -1,4 +1,4 @@
-package com.xiaojihua.jdbc;
+package com.xiaojihua.chapter01jdbc;
 
 import java.io.FileReader;
 import java.sql.*;

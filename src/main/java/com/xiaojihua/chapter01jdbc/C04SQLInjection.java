@@ -1,4 +1,4 @@
-package com.xiaojihua.jdbc;
+package com.xiaojihua.chapter01jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

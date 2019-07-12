@@ -1,4 +1,4 @@
-package com.xiaojihua.jdbc;
+package com.xiaojihua.chapter01jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +14,7 @@ public class C01JDBCexample {
         //1、加载数据库驱动
         Class.forName("com.mysql.jdbc.Driver");
         //2、创建Connection链接
-        String url = "jdbc:mysql://localhost:3306/mysqltest1";
+        String url = "chapter01jdbc:mysql://localhost:3306/mysqltest1";
         Connection conn = DriverManager.getConnection(url,"root","root");
         //3、创建执行语句
         Statement statement = conn.createStatement();
