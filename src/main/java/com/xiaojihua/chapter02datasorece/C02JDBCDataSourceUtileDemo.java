@@ -76,13 +76,13 @@ public class C02JDBCDataSourceUtileDemo {
         ResultSet rs = null;
         try{
             conn = C01JDBCDataSourceUtile.getConnection();
-            String sql = "select * from users where username like ?";
+            String sql = "select * from users where uname like ?";
             psd = conn.prepareStatement(sql);
             //注意这个参数的%%
             psd.setObject(1,"%l%");
             rs = psd.executeQuery();
             while(rs.next()){
-                String username = rs.getString("username");
+                String username = rs.getString("uname");
                 String pass = rs.getString("pass");
                 System.out.println(username + "\t" + pass);
             }
