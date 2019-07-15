@@ -15,7 +15,10 @@ import java.sql.Statement;
  */
 public class C03C3P0DataSourceUtil {
     //主要的实现类
-    private static ComboPooledDataSource dataSource = new ComboPooledDataSource();
+    //private static ComboPooledDataSource dataSource = new ComboPooledDataSource();
+
+    //可以使用配置文件中的自定义命名来创建dataSource
+    private static ComboPooledDataSource dataSource = new ComboPooledDataSource("abcd");
 
     public static Connection getConnection() throws SQLException{
         return dataSource.getConnection();

@@ -1,0 +1,90 @@
+/**
+ * 所有连接池必须满足 javax.sql.DataSource规范
+ * 1.DBCP连接池
+ * 		实现类: BasicDataSource implements javax.sql.DataSource
+ * 		使用方式一:不借助配置文件
+	 * 		BasicDataSource ds = new BasicDataSource();//没有连接的连接池
+	 * 		//设置数据库连接的四大要素
+	 * 		ds.setDriverClassName("com.mysql.jdbc.Driver");
+	 * 		ds.setUrl("jdbc:mysql://localhost:3306/数据库名");
+	 * 		ds.setUsername("root");
+	 * 		ds.setPassword("123");
+	 * 		只要你设置了四大要素,那么ds连接池 自动就会去缓存几个连接对象
+	 * 		//获取连接
+	 * 			ds.getConnection();
+	 *  使用方式二:借助配置文件  用properties配置文件
+	 *  	注意:配置文件名,可以随便起,一般叫做dbcpconfig.properties
+	 *  	配置文件的内容:(必须有的四大要素)
+	 *  	driverClassName=com.mysql.jdbc.Driver
+	 *  	url=jdbc:mysql://localhost:3306/day04
+	 *  	username=root
+	 *  	password=123
+ * 			#<!-- 初始化连接 -->
+ * 			initialSize=10
+ * 		使用方式三(推荐):
+ * 			不需要解析dbcpconfig.properties文件
+ * 			用到一个核心类: BasicDataSourceFactory
+ * 			DataSource ds = BasicDataSourceFactory.createDataSource(Properties对象);
+ * 			然后直接使用
+ * 			ds.getConnection();
+ * 			补充:
+ * 				加载配置文件的两种方式:
+ * 				1.配置文件在工程的根目录
+ * 					Properties ps = new Properties();
+ * 					ps.load(new FileInputStream("配置文件名"));
+ * 				2.配置文件在src根目录
+ * 				   Properties ps = new Properties();
+ * 				   InputStream in = 当期类.class.getClassLoader().getResourceAsStream("配置文件名");
+ * 				   ps.load(in);
+ * 2.C3P0连接池
+ * 			实现类: ComboPooledDataSource implments javax.sql.DataSource
+ * 			方式一: 自己设置四大要素
+	 * 			ComboPooledDataSource ds = new ComboPooledDataSource();
+	 * 			ds.setDriverClass("com.mysql.jdbc.Driver");
+	 * 			ds.setJdbcUrl("jdbc:mysql://localhost:3306/数据库名");
+	 * 			ds.setUser("root");
+	 * 			ds.setPassword("123");
+	 * 			获取使用
+	 * 				ds.getConnection();
+	 * 		方式二:基于XML配置文件
+	 * 		注意:
+	 * 			1.文件名和文件中标签名 必须是官方指定的
+	 * 			2.必须放到src根目录下,C3P0的实现类ComboPooledDataSource会自动加载
+	 * 			使用
+	 * 				ComboPooledDataSource ds = new ComboPooledDataSource();
+	 * 				//不需要设置四大要素,因为ds会自动去加载 src下一个叫做次c3p0-config.xml的文件
+	 * 				ds.getConnection();
+	 *
+	 *
+ * 3.DBUtils:阿帕奇的common框架
+ * 		DBUtils:主要用于 关闭连接,释放资源,和事务相关
+ * 		QueryRunner: 主要用于 增删改查 CURD
+ * 			int update(String sql,Object... params);//用于增删改
+ * 			不一定  query(String sql,ResultSetHandler接口实现类对象 ,Object...params);//用于查询的
+ *
+ * 		ResultSetHandler:
+ * 			(Object[])ArrayHandler:把结果集中的第一条记录,封装成Object[],返回这个Object数组
+ * 			(List<Object[]>)ArrayListHandler:把结果集中每一条记录,分别封装成Object数组,把这个数组再封装到集合中,并返回集合
+ * 			*(JavaBean)BeanHandler:把结果集中的第一条记录,封装到JavaBean对象,返回这个对象
+ * 					new BeanHandler<JavaBean>(JavaBean.class)
+ * 			*(List<JavaBean>)BeanListHandler:把结果集中每一条记录,分别封装到JavaBean对象,把这些对象保存到集合中,并返回这个集合
+ *
+ * 			(List<Object>)ColumnListHandler:把结果集中的某一列的值,封装到list集合中,并返回
+ *
+ * 			(Map<String,Object>)MapHandler:把结果集中的第一条记录,封装到Map<String,Object>中
+ * 						键是字段名,值是字段值
+ * 			(List<Map<String,Object>>)MapListHandler:把结果集中的每一条记录,封装到Map<String,Object>中
+ * 						键是字段名,值是字段值,再把这个Map存储到集合中,并返回这个集合
+ * 			*(Object)ScalarHandler:主要用来保存单一数据
+ * 					new ScalarHandler<Double>();
+ * 			QueryRunner的使用步骤:
+ * 			//1.创建QueryRunner对象
+ * 			QueryRunner qr = new QueryRunner();//无参构造,在执行时候必须传入连接,用于事务开发
+ * 			QueryRunner qr = new QueryRunner(DataSource ds);//有参
+ * 			//2.执行sql
+ * 			qr.update();//增删改
+ * 			qr.query();//查询
+ * 			//3.不需要我们手动关系连接,sql执行对象,结果集
+ *
+ *
+ */
