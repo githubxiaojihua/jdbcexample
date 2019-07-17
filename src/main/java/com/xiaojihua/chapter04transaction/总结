@@ -1,0 +1,38 @@
+/**
+ * 案例:使用三层思想实现转账
+ *
+ * 1.事务: 是逻辑上的一组操作(多个sql语句),要么都成功 要么都失败
+ *
+ *
+ * 2.事务的操作:
+ * 		开启事务:
+ * 			java程序代码: 连接对象.setAutoCommit(false);
+ * 			 DOS窗口代码: start transaction;
+ * 		提交事务
+ * 			java代码:连接对象.commit();
+ * 			DOS窗口代码:commit;
+ * 		回滚事务
+ * 			java代码:连接对象.rollback();
+ * 			DOS窗口:rollback;
+ * 3,案例1:使用原生的JDBCAPI完成转账(带有事务和不带事务)
+ *
+ * 4.案例2:使用DBUtils工具完成转账(带有事务的和不带事务)
+ *
+ * 5.三层思想完成转账:(初级版本BDUtils工具,中级版本加上事务,终极版本编写了ConnectionManager)
+ *
+ *
+ * 6.ThreadLocal:线程本地变量
+ * 		public class ThreadLocal{
+ * 			Map<Thread,Object> map = new Map<Thread,Object>();
+ * 			public void set(Object obj){
+ * 				map.set(Thread.currentThread(),obj);
+ * 			}
+ * 			public Object get(){
+ * 				map.get(Thread.currentThread());
+ * 			}
+ * 		}
+ *
+ *
+ *
+ *
+ */

@@ -1,0 +1,9 @@
+这个例子是三层思想的转账模型终极版
+1、首先包划分为dao\domain\service\view\utils
+2、分层是为了满足高内聚低耦合的程序设计思想
+3、utils中的C01ConnectionManager利用的ThreadLocal将数据库的链接的获取、
+关闭、开启事务、提交事务进行统一管理。
+dao和service中利用C01ConnectionManger进行数据链接的获取以及事务的管理
+
+关于异常的处理在dao层出现异常往外抛，service出现异常必须进行处理包括dao层的异常，
+将异常拦截在用户层之前
