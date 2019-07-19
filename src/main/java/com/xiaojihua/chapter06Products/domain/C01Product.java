@@ -65,4 +65,24 @@ public class C01Product {
     public String getCategory_id() {
         return category_id;
     }
+
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
+    }
 }
