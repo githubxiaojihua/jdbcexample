@@ -9,7 +9,7 @@ import java.util.Properties;
 
 /**
  * 知识点;
- * 使用JDBC连接池构建工具类，JDBC是javax.sql.DataSource规范的
+ * 使用DBCP连接池构建工具类，DBCP是JAVA数据库连接池javax.sql.DataSource规范的
  * 实现者，具体的实现类是BasicDataSource。JDBC提供了
  * BasicDataSourceFactory.createDataSource(properties);
  * 工厂方法来创建BasicDataSource，并且通过配置文件来配置连接信息
