@@ -30,7 +30,7 @@ import java.util.Map;
 public class C02DbutilDemo2 {
 
     public static void main(String[] args) throws Exception{
-        demo08();
+        demo1();
 
     }
 
